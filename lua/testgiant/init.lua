@@ -22,7 +22,7 @@ function M.setup(user_config)
 		vim.api.nvim_set_keymap(
 			"n",
 			config.keymap,
-			":lua require('test_giant').run_current_scope()<CR>",
+			":lua require('testgiant').run_current_scope()<CR>",
 			{ noremap = true, silent = true }
 		)
 	end
@@ -88,6 +88,10 @@ function M.run_current_scope()
 			print("No test runner available for filetype: " .. ft)
 		end
 	end
+end
+
+if vim.g._TEST then
+	M.__TEST_get_test_identifier = get_test_identifier
 end
 
 return M

@@ -1,6 +1,6 @@
-# test-giant
+# Test Giant
 
-**test-giant** is a Neovim plugin that leverages [vim-test](https://github.com/vim-test/vim-test) and [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) to run tests at the current scope (a test method or class) based on your cursor position. It is designed to work primarily with Python test files (by default, those starting with `test_`), and you can configure inclusion and exclusion patterns as needed. If a file doesn't match your configured patterns or the language isn't set up, test-giant will defer to vim-test's default behavior.
+**testgiant** is a Neovim plugin that leverages [vim-test](https://github.com/vim-test/vim-test) and [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) to run tests at the current scope (a test method or class) based on your cursor position. It is designed to work primarily with Python test files (by default, those starting with `test_`), and you can configure inclusion and exclusion patterns as needed. If a file doesn't match your configured patterns or the language isn't set up, testgiant will defer to vim-test's default behavior.
 
 ## Features
 
@@ -18,9 +18,9 @@ Using [Lazy.nvim](https://github.com/folke/lazy.nvim):
 -- In your Lazy.nvim config:
 return {
   {
-    "bryangrimes/test-giant",
+    "bryangrimes/testgiant",
     config = function()
-      require("test_giant").setup({
+      require("testgiant").setup({
         keymap = "<leader>r",               -- Key mapping to run tests in the current scope
         include_pattern = "^test_",         -- Only include files starting with 'test_'
         exclude_pattern = "test_fixtures",  -- Regex pattern to exclude certain files
@@ -46,13 +46,13 @@ return {
    - The command is executed with your specified pytest options.
 
 4. **Fallback Behavior:**
-   If the current file's type isn't configured for custom behavior, test-giant falls back to vim-test's `TestNearest` command, letting vim-test handle test execution.
+   If the current file's type isn't configured for custom behavior, testgiant falls back to vim-test's `TestNearest` command, letting vim-test handle test execution.
 
 ## Behavior Overview
 
 ### File Filtering
 
-When invoked, test-giant checks that the current file name matches the configured inclusion pattern (default: files starting with `test_`) and does not match the exclusion pattern (default: `test_fixtures`). This ensures that only valid test files are processed.
+When invoked, testgiant checks that the current file name matches the configured inclusion pattern (default: files starting with `test_`) and does not match the exclusion pattern (default: `test_fixtures`). This ensures that only valid test files are processed.
 
 ### Scope Detection via Tree-sitter
 
@@ -74,7 +74,7 @@ pytest /path/to/test_example.py::test_function -srA --disable-warnings --showloc
 
 ### Language-Based Configuration
 
-The plugin currently provides a configuration for Python, but it is designed to be extended to other languages. If the file's language is not configured, test-giant will notify you and fall back to vim-test's default behavior.
+The plugin currently provides a configuration for Python, but it is designed to be extended to other languages. If the file's language is not configured, testgiant will notify you and fall back to vim-test's default behavior.
 
 ## Configuration
 
@@ -98,7 +98,7 @@ You can override the default settings by passing a table to the setup function:
 
 - **Language-Specific Configuration:**
   - The default configuration currently only includes Python. Future language configurations can be added under the languages table.
-  - If the current filetype is not configured, test-giant will fall back to vim-test's TestNearest.
+  - If the current filetype is not configured, testgiant will fall back to vim-test's TestNearest.
 
 ## Requirements
 
